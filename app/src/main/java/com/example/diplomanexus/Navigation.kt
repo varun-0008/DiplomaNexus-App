@@ -12,6 +12,7 @@ import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 import com.example.diplomanexus.ui.main.MainScreen
 import com.example.diplomanexus.ui.screens.LoginScreen
+import com.example.diplomanexus.ui.screens.SignUpScreen
 import com.example.diplomanexus.ui.screens.SplashScreen
 import com.example.diplomanexus.ui.screens.VerificationScreen
 import com.example.diplomanexus.viewmodel.AppViewModel
@@ -47,6 +48,21 @@ fun MainNavigation() {
             viewModel = viewModel,
             onSuccess = {
               backStack.add(Main)
+            },
+            onNavigateToSignUp = {
+              backStack.add(SignUp)
+            },
+            modifier = Modifier.fillMaxSize()
+          )
+        }
+        entry<SignUp> {
+          SignUpScreen(
+            viewModel = viewModel,
+            onSuccess = {
+              backStack.add(Main)
+            },
+            onNavigateToLogin = {
+              backStack.add(Login)
             },
             modifier = Modifier.fillMaxSize()
           )

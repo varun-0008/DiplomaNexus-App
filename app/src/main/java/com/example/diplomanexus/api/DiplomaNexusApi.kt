@@ -7,8 +7,11 @@ import retrofit2.http.*
 
 interface DiplomaNexusApi {
 
+    @POST("api/auth/verify-pin")
+    suspend fun verifyPin(@Body request: VerifyPinRequest): Response<VerifyPinResponse>
+
     @POST("api/auth/register")
-    suspend fun register(@Body request: AuthRequest): Response<AuthResponse>
+    suspend fun register(@Body request: RegisterRequest): Response<AuthResponse>
 
     @POST("api/auth/login")
     suspend fun login(@Body request: AuthRequest): Response<AuthResponse>

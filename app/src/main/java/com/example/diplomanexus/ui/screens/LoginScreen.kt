@@ -39,6 +39,7 @@ import com.example.diplomanexus.viewmodel.AppViewModel
 fun LoginScreen(
     viewModel: AppViewModel,
     onSuccess: () -> Unit,
+    onNavigateToSignUp: () -> Unit = {},
     modifier: Modifier = Modifier
 ) {
     var isRegisterMode by remember { mutableStateOf(false) }
@@ -289,7 +290,7 @@ fun LoginScreen(
                             onClick = {
                                 if (username.isNotBlank() && password.isNotBlank()) {
                                     if (isRegisterMode) {
-                                        viewModel.register(username.trim(), password, onSuccess)
+                                        viewModel.register(username = username.trim(), password = password, onSuccess = onSuccess)
                                     } else {
                                         viewModel.login(username.trim(), password, onSuccess)
                                     }
@@ -328,12 +329,16 @@ fun LoginScreen(
                                 fontSize = 13.sp
                             )
                             Text(
-                                text = if (isRegisterMode) "Login" else "Create an Account",
+                                text = if (isRegisterMode) "Already registered? Log In" else "Sign Up with SBTET PIN",
                                 color = BrandOrange,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 13.sp,
                                 modifier = Modifier.clickable {
-                                    isRegisterMode = !isRegisterMode
+                                    if (isRegisterMode) {
+                                        isRegisterMode = false
+                                    } else {
+                                        onNavigateToSignUp()
+                                    }
                                 }
                             )
                         }

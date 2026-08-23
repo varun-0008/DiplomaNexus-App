@@ -217,17 +217,63 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     // ------------------- AUTHENTICATION -------------------
 
-    fun register(username: String, password: String, onSuccess: () -> Unit) {
+    fun verifyPinWithSbtet(pin: String, onResult: (VerifiedStudentDto?) -> Unit) {
         viewModelScope.launch {
             _isLoading.value = true
             _errorMessage.value = null
             try {
-                val response = api.register(AuthRequest(username, password))
+                val response = api.verifyPin(VerifyPinRequest(pin.trim()))
+                if (response.isSuccessful && response.body()?.success == true && response.body()?.student != null) {
+                    onResult(response.body()!!.student)
+                } else {
+                    val errorMsg = response.errorBody()?.string() ?: "Unable to verify PIN with SBTET portal"
+                    _errorMessage.value = parseError(errorMsg)
+                    onResult(null)
+                }
+            } catch (e: Exception) {
+                Log.e("AppViewModel", "PIN verification error", e)
+                _errorMessage.value = "Network error: ${e.localizedMessage}"
+                onResult(null)
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun register(
+        username: String,
+        password: String,
+        pin: String? = null,
+        studentName: String? = null,
+        branch: String? = null,
+        collegeName: String? = null,
+        mobileNumber: String? = null,
+        onSuccess: () -> Unit
+    ) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _errorMessage.value = null
+            try {
+                val req = RegisterRequest(
+                    username = username.trim().lowercase(),
+                    password = password,
+                    pin = pin?.trim(),
+                    student_name = studentName,
+                    branch = branch,
+                    college_name = collegeName,
+                    mobile_number = mobileNumber
+                )
+                val response = api.register(req)
                 if (response.isSuccessful && response.body() != null) {
                     val authResponse = response.body()!!
                     sessionManager.saveAuthToken(authResponse.token)
                     _currentUser.value = authResponse.user
                     onSuccess()
+                    fetchPosts()
+                    fetchBlogs()
+                    if (authResponse.user.is_verified) {
+                        fetchAcademicInfo()
+                    }
                 } else {
                     val errorMsg = response.errorBody()?.string() ?: "Registration failed"
                     _errorMessage.value = parseError(errorMsg)

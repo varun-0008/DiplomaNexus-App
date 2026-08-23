@@ -6,6 +6,33 @@ data class AuthRequest(
     val password: String
 )
 
+data class RegisterRequest(
+    val username: String,
+    val password: String,
+    val pin: String? = null,
+    val student_name: String? = null,
+    val branch: String? = null,
+    val college_name: String? = null,
+    val mobile_number: String? = null
+)
+
+data class VerifyPinRequest(
+    val pin: String
+)
+
+data class VerifiedStudentDto(
+    val pin: String,
+    val name: String,
+    val branch: String,
+    val college: String,
+    val mobile: String? = ""
+)
+
+data class VerifyPinResponse(
+    val success: Boolean,
+    val student: VerifiedStudentDto
+)
+
 data class AuthResponse(
     val token: String,
     val user: UserDto

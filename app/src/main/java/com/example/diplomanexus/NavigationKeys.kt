@@ -6,5 +6,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable data object Splash : NavKey
 @Serializable data object Login : NavKey
+@Serializable data object SignUp : NavKey
 @Serializable data object Verification : NavKey
 @Serializable data object Main : NavKey
