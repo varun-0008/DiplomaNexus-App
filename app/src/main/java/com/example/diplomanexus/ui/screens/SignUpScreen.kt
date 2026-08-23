@@ -309,12 +309,12 @@ fun SignUpScreen(
 
                         OutlinedTextField(
                             value = otpText,
-                            onValueChange = { otpText = it },
-                            placeholder = { Text("Enter OTP", color = TextSecondary) },
-                            label = { Text("SBTET 6-Digit OTP") },
+                            onValueChange = { otpText = it.uppercase() },
+                            placeholder = { Text("e.g. A1B2C3", color = TextSecondary) },
+                            label = { Text("SBTET Alphanumeric OTP") },
                             leadingIcon = { Icon(Icons.Default.Pin, contentDescription = null, tint = BrandOrange) },
                             singleLine = true,
-                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text),
                             shape = RoundedCornerShape(14.dp),
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedTextColor = TextPrimary,
