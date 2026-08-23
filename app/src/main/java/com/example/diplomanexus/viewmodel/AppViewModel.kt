@@ -160,15 +160,26 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     // ------------------- AUTO UPDATE -------------------
 
-    fun checkForUpdates() {
+    fun checkForUpdates(context: android.content.Context? = null) {
         viewModelScope.launch {
             try {
                 val response = api.getAppVersion()
                 if (response.isSuccessful && response.body() != null) {
                     val update = response.body()!!
-                    val currentVersionCode = 1 // Current build versionCode
+                    var currentVersionCode = 1
+                    if (context != null) {
+                        try {
+                            val pInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+                            @Suppress("DEPRECATION")
+                            currentVersionCode = pInfo.versionCode
+                        } catch (e: Exception) {
+                            Log.e("AppViewModel", "Package info error", e)
+                        }
+                    }
                     if (update.latestVersionCode > currentVersionCode) {
                         _availableUpdate.value = update
+                    } else {
+                        _availableUpdate.value = null
                     }
                 }
             } catch (e: Exception) {
