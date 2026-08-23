@@ -209,7 +209,7 @@ fun SignUpScreen(
                         OutlinedTextField(
                             value = pinText,
                             onValueChange = { pinText = it },
-                            placeholder = { Text("e.g. 24054-CPS-063", color = TextSecondary) },
+                            placeholder = { Text("e.g. 24001-C-001", color = TextSecondary) },
                             label = { Text("SBTET Roll Number (PIN)") },
                             leadingIcon = { Icon(Icons.Default.Badge, contentDescription = null, tint = ElectricBlue) },
                             singleLine = true,
@@ -230,7 +230,7 @@ fun SignUpScreen(
                         OutlinedTextField(
                             value = mobileText,
                             onValueChange = { mobileText = it },
-                            placeholder = { Text("e.g. 9876543210", color = TextSecondary) },
+                            placeholder = { Text("e.g. 9800000000", color = TextSecondary) },
                             label = { Text("Registered Mobile Number") },
                             leadingIcon = { Icon(Icons.Default.Phone, contentDescription = null, tint = ElectricBlue) },
                             singleLine = true,

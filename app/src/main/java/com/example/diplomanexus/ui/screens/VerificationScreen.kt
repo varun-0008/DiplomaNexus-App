@@ -63,7 +63,7 @@ fun VerificationScreen(
     // Validate inputs
     LaunchedEffect(pin) {
         pinError = if (pin.isNotBlank() && !isValidRollNumber(pin)) {
-            "Format: YYCCC-BBB-NNN (e.g. 24054-cps-063)"
+            "Format: YYCCC-BBB-NNN (e.g. 24001-C-001)"
         } else if (pin.isNotBlank() && pin.trim().lowercase() != username.trim().lowercase()) {
             "Must match account username: $username"
         } else null

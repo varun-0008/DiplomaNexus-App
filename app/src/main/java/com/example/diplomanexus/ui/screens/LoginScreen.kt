@@ -174,14 +174,14 @@ fun LoginScreen(
                             OutlinedTextField(
                                 value = username,
                                 onValueChange = { username = it },
-                                placeholder = { Text(if (isRegisterMode) "e.g. 24054-cps-063" else "e.g. S12345678", color = TextTertiary) },
+                                placeholder = { Text(if (isRegisterMode) "e.g. 24001-C-001" else "e.g. S12345678", color = TextTertiary) },
                                 leadingIcon = { Icon(Icons.Default.Person, contentDescription = null, tint = TextTertiary) },
                                 supportingText = {
                                     if (isRegisterMode && username.isNotBlank()) {
                                         if (isUsernameValidPin) {
                                             Text("Valid Roll Number format ✓", color = AlertGreen)
                                         } else {
-                                            Text("Format: YYCCC-BBB-NNN (e.g. 24054-cps-063)", color = MaterialTheme.colorScheme.error)
+                                            Text("Format: YYCCC-BBB-NNN (e.g. 24001-C-001)", color = MaterialTheme.colorScheme.error)
                                         }
                                     }
                                 },
