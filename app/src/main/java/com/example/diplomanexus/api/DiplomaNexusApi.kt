@@ -171,7 +171,7 @@ interface DiplomaNexusApi {
     suspend fun getAppVersion(): Response<AppVersionDto>
 
     companion object {
-        private const val BASE_URL = "http://10.0.2.2:5000/"
+        private const val BASE_URL = "https://diplomanexus-backend.onrender.com/"
 
         fun create(): DiplomaNexusApi {
             return Retrofit.Builder()

@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit
 object ChatSocketManager {
 
     private const val TAG = "ChatSocketManager"
-    private const val SERVER_URL = "ws://10.0.2.2:5000/socket.io/?EIO=4&transport=websocket"
+    private const val SERVER_URL = "wss://diplomanexus-backend.onrender.com/socket.io/?EIO=4&transport=websocket"
     private val gson = Gson()
 
     private var webSocket: WebSocket? = null
