@@ -39,8 +39,11 @@ fun SignUpScreen(
     val isLoading by viewModel.isLoading.collectAsState()
     val errorMessage by viewModel.errorMessage.collectAsState()
 
-    var step by remember { mutableIntStateOf(1) } // 1: PIN verification, 2: Account Creation
+    var step by remember { mutableIntStateOf(1) } // 1: PIN & Mobile, 2: OTP, 3: Account Creation
     var pinText by remember { mutableStateOf("") }
+    var mobileText by remember { mutableStateOf("") }
+    var otpText by remember { mutableStateOf("") }
+    var otpStatusMessage by remember { mutableStateOf<String?>(null) }
     var verifiedStudent by remember { mutableStateOf<VerifiedStudentDto?>(null) }
 
     var usernameText by remember { mutableStateOf("") }
@@ -99,7 +102,7 @@ fun SignUpScreen(
                 )
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(14.dp))
 
             Text(
                 text = "DiplomaNexus",
@@ -109,21 +112,25 @@ fun SignUpScreen(
             )
 
             Text(
-                text = if (step == 1) "SBTET Student Registration" else "Create Verified Account",
+                text = when(step) {
+                    1 -> "Step 1: Enter SBTET Roll Number & Mobile"
+                    2 -> "Step 2: Enter SBTET SMS OTP"
+                    else -> "Step 3: Create Account Credentials"
+                },
                 color = TextSecondary,
                 fontSize = 13.sp,
                 fontWeight = FontWeight.Medium,
                 textAlign = TextAlign.Center
             )
 
-            Spacer(modifier = Modifier.height(24.dp))
+            Spacer(modifier = Modifier.height(20.dp))
 
             // Error Toast Bar
             if (errorMessage != null) {
                 Surface(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 16.dp),
+                        .padding(bottom = 14.dp),
                     shape = RoundedCornerShape(12.dp),
                     color = Color.Red.copy(alpha = 0.15f),
                     border = androidx.compose.foundation.BorderStroke(1.dp, Color.Red.copy(alpha = 0.3f))
@@ -181,9 +188,9 @@ fun SignUpScreen(
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     if (step == 1) {
-                        // ─── STEP 1: SBTET PIN VERIFICATION ───────────────────────────
+                        // ─── STEP 1: SBTET PIN & MOBILE ─────────────────────────────────
                         Text(
-                            text = "STEP 1 OF 2",
+                            text = "OFFICIAL SBTET VERIFICATION",
                             color = VerifiedBlue,
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold,
@@ -191,23 +198,43 @@ fun SignUpScreen(
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "Enter your official SBTET Roll Number (PIN) to verify your student identity via government records.",
+                            text = "Enter your SBTET Roll Number and registered mobile number to receive an official SMS OTP.",
                             color = TextSecondary,
                             fontSize = 12.sp,
                             textAlign = TextAlign.Center
                         )
 
-                        Spacer(modifier = Modifier.height(18.dp))
+                        Spacer(modifier = Modifier.height(16.dp))
 
                         OutlinedTextField(
                             value = pinText,
                             onValueChange = { pinText = it },
                             placeholder = { Text("e.g. 24054-CPS-063", color = TextSecondary) },
                             label = { Text("SBTET Roll Number (PIN)") },
-                            leadingIcon = {
-                                Icon(Icons.Default.Badge, contentDescription = null, tint = ElectricBlue)
-                            },
+                            leadingIcon = { Icon(Icons.Default.Badge, contentDescription = null, tint = ElectricBlue) },
                             singleLine = true,
+                            shape = RoundedCornerShape(14.dp),
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedTextColor = TextPrimary,
+                                unfocusedTextColor = TextPrimary,
+                                focusedBorderColor = ElectricBlue,
+                                unfocusedBorderColor = Color.White.copy(alpha = 0.15f),
+                                focusedContainerColor = Color.White.copy(alpha = 0.03f),
+                                unfocusedContainerColor = Color.White.copy(alpha = 0.01f)
+                            ),
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                        Spacer(modifier = Modifier.height(12.dp))
+
+                        OutlinedTextField(
+                            value = mobileText,
+                            onValueChange = { mobileText = it },
+                            placeholder = { Text("e.g. 9876543210", color = TextSecondary) },
+                            label = { Text("Registered Mobile Number") },
+                            leadingIcon = { Icon(Icons.Default.Phone, contentDescription = null, tint = ElectricBlue) },
+                            singleLine = true,
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
                             shape = RoundedCornerShape(14.dp),
                             colors = OutlinedTextFieldDefaults.colors(
                                 focusedTextColor = TextPrimary,
@@ -224,17 +251,16 @@ fun SignUpScreen(
 
                         Button(
                             onClick = {
-                                if (pinText.isNotBlank()) {
-                                    viewModel.verifyPinWithSbtet(pinText) { student ->
-                                        if (student != null) {
-                                            verifiedStudent = student
-                                            usernameText = student.pin
+                                if (pinText.isNotBlank() && mobileText.isNotBlank()) {
+                                    viewModel.sendSbtetOtp(pinText, mobileText) { success, msg ->
+                                        if (success) {
+                                            otpStatusMessage = msg
                                             step = 2
                                         }
                                     }
                                 }
                             },
-                            enabled = pinText.isNotBlank() && !isLoading,
+                            enabled = pinText.isNotBlank() && mobileText.isNotBlank() && !isLoading,
                             colors = ButtonDefaults.buttonColors(containerColor = ElectricBlue),
                             shape = RoundedCornerShape(14.dp),
                             modifier = Modifier
@@ -242,30 +268,113 @@ fun SignUpScreen(
                                 .height(50.dp)
                         ) {
                             if (isLoading) {
-                                CircularProgressIndicator(
-                                    modifier = Modifier.size(20.dp),
-                                    color = Color.White,
-                                    strokeWidth = 2.dp
-                                )
+                                CircularProgressIndicator(modifier = Modifier.size(20.dp), color = Color.White, strokeWidth = 2.dp)
+                            } else {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Icon(Icons.Default.Sms, contentDescription = null, modifier = Modifier.size(18.dp))
+                                    Spacer(modifier = Modifier.width(8.dp))
+                                    Text("Send SBTET SMS OTP", fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                                }
+                            }
+                        }
+                    } else if (step == 2) {
+                        // ─── STEP 2: ENTER SMS OTP ──────────────────────────────────────
+                        Text(
+                            text = "VERIFY SMS OTP",
+                            color = VerifiedBlue,
+                            fontSize = 10.sp,
+                            fontWeight = FontWeight.Bold,
+                            letterSpacing = 1.sp
+                        )
+                        Spacer(modifier = Modifier.height(4.dp))
+                        Text(
+                            text = "Enter the OTP sent to $mobileText by SBTET.",
+                            color = TextSecondary,
+                            fontSize = 12.sp,
+                            textAlign = TextAlign.Center
+                        )
+
+                        if (otpStatusMessage != null) {
+                            Spacer(modifier = Modifier.height(8.dp))
+                            Text(
+                                text = otpStatusMessage!!,
+                                color = VerifiedBlue,
+                                fontSize = 11.sp,
+                                fontWeight = FontWeight.SemiBold,
+                                textAlign = TextAlign.Center
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.height(16.dp))
+
+                        OutlinedTextField(
+                            value = otpText,
+                            onValueChange = { otpText = it },
+                            placeholder = { Text("Enter OTP", color = TextSecondary) },
+                            label = { Text("SBTET 6-Digit OTP") },
+                            leadingIcon = { Icon(Icons.Default.Pin, contentDescription = null, tint = BrandOrange) },
+                            singleLine = true,
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            shape = RoundedCornerShape(14.dp),
+                            colors = OutlinedTextFieldDefaults.colors(
+                                focusedTextColor = TextPrimary,
+                                unfocusedTextColor = TextPrimary,
+                                focusedBorderColor = BrandOrange,
+                                unfocusedBorderColor = Color.White.copy(alpha = 0.15f),
+                                focusedContainerColor = Color.White.copy(alpha = 0.03f),
+                                unfocusedContainerColor = Color.White.copy(alpha = 0.01f)
+                            ),
+                            modifier = Modifier.fillMaxWidth()
+                        )
+
+                        Spacer(modifier = Modifier.height(20.dp))
+
+                        Button(
+                            onClick = {
+                                if (otpText.isNotBlank()) {
+                                    viewModel.verifySbtetOtpForSignUp(pinText, mobileText, otpText) { student ->
+                                        if (student != null) {
+                                            verifiedStudent = student
+                                            usernameText = student.pin
+                                            step = 3
+                                        }
+                                    }
+                                }
+                            },
+                            enabled = otpText.isNotBlank() && !isLoading,
+                            colors = ButtonDefaults.buttonColors(containerColor = BrandOrange),
+                            shape = RoundedCornerShape(14.dp),
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(50.dp)
+                        ) {
+                            if (isLoading) {
+                                CircularProgressIndicator(modifier = Modifier.size(20.dp), color = Color.White, strokeWidth = 2.dp)
                             } else {
                                 Row(verticalAlignment = Alignment.CenterVertically) {
                                     Icon(Icons.Default.Verified, contentDescription = null, modifier = Modifier.size(18.dp))
                                     Spacer(modifier = Modifier.width(8.dp))
-                                    Text("Verify with SBTET Portal", fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                                    Text("Verify OTP & Fetch Record", fontWeight = FontWeight.Bold, fontSize = 14.sp)
                                 }
                             }
                         }
+
+                        Spacer(modifier = Modifier.height(10.dp))
+
+                        TextButton(onClick = { step = 1 }) {
+                            Text("Resend OTP / Change Details", color = TextSecondary, fontSize = 12.sp)
+                        }
                     } else {
-                        // ─── STEP 2: VERIFIED CARD PREVIEW & ACCOUNT CREATION ──────────
+                        // ─── STEP 3: VERIFIED BADGE PREVIEW & PASSWORD CREATION ──────────
                         Text(
-                            text = "STEP 2 OF 2",
+                            text = "ACCOUNT SETUP",
                             color = VerifiedBlue,
                             fontSize = 10.sp,
                             fontWeight = FontWeight.Bold,
                             letterSpacing = 1.sp
                         )
 
-                        Spacer(modifier = Modifier.height(12.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         // Verified Student Badge Card
                         if (verifiedStudent != null) {
@@ -308,7 +417,7 @@ fun SignUpScreen(
                             }
                         }
 
-                        Spacer(modifier = Modifier.height(16.dp))
+                        Spacer(modifier = Modifier.height(14.dp))
 
                         // Username Field (Defaults to PIN)
                         OutlinedTextField(
@@ -329,7 +438,7 @@ fun SignUpScreen(
                             modifier = Modifier.fillMaxWidth()
                         )
 
-                        Spacer(modifier = Modifier.height(12.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         // Password Field
                         OutlinedTextField(
@@ -361,7 +470,7 @@ fun SignUpScreen(
                             modifier = Modifier.fillMaxWidth()
                         )
 
-                        Spacer(modifier = Modifier.height(12.dp))
+                        Spacer(modifier = Modifier.height(10.dp))
 
                         // Confirm Password Field
                         OutlinedTextField(
@@ -384,7 +493,7 @@ fun SignUpScreen(
                             modifier = Modifier.fillMaxWidth()
                         )
 
-                        Spacer(modifier = Modifier.height(20.dp))
+                        Spacer(modifier = Modifier.height(18.dp))
 
                         // Complete Registration Button
                         Button(
@@ -410,26 +519,22 @@ fun SignUpScreen(
                                 .height(50.dp)
                         ) {
                             if (isLoading) {
-                                CircularProgressIndicator(
-                                    modifier = Modifier.size(20.dp),
-                                    color = Color.White,
-                                    strokeWidth = 2.dp
-                                )
+                                CircularProgressIndicator(modifier = Modifier.size(20.dp), color = Color.White, strokeWidth = 2.dp)
                             } else {
                                 Text("Create Verified Account", fontWeight = FontWeight.Bold, fontSize = 14.sp)
                             }
                         }
 
-                        Spacer(modifier = Modifier.height(10.dp))
+                        Spacer(modifier = Modifier.height(8.dp))
 
                         TextButton(onClick = { step = 1 }) {
-                            Text("Verify Different PIN", color = TextSecondary, fontSize = 12.sp)
+                            Text("Start Over", color = TextSecondary, fontSize = 12.sp)
                         }
                     }
                 }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Spacer(modifier = Modifier.height(18.dp))
 
             // Return to Login Link
             Row(

@@ -217,6 +217,54 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
 
     // ------------------- AUTHENTICATION -------------------
 
+    fun sendSbtetOtp(pin: String, mobile: String, onResult: (Boolean, String?) -> Unit) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _errorMessage.value = null
+            try {
+                val response = api.sendSbtetOtp(SendSbtetOtpRequest(pin.trim(), mobile.trim()))
+                if (response.isSuccessful && response.body()?.success == true) {
+                    onResult(true, response.body()?.message ?: "OTP sent successfully")
+                } else {
+                    val errorMsg = response.errorBody()?.string() ?: "Failed to send OTP via SBTET"
+                    val parsed = parseError(errorMsg)
+                    _errorMessage.value = parsed
+                    onResult(false, parsed)
+                }
+            } catch (e: Exception) {
+                Log.e("AppViewModel", "Send OTP error", e)
+                val err = "Network error: ${e.localizedMessage}"
+                _errorMessage.value = err
+                onResult(false, err)
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
+    fun verifySbtetOtpForSignUp(pin: String, mobile: String, otp: String, onResult: (VerifiedStudentDto?) -> Unit) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            _errorMessage.value = null
+            try {
+                val response = api.verifySbtetOtp(VerifySbtetOtpRequest(pin.trim(), mobile.trim(), otp.trim()))
+                if (response.isSuccessful && response.body()?.success == true && response.body()?.student != null) {
+                    onResult(response.body()!!.student)
+                } else {
+                    val errorMsg = response.errorBody()?.string() ?: "Invalid OTP or verification failed"
+                    _errorMessage.value = parseError(errorMsg)
+                    onResult(null)
+                }
+            } catch (e: Exception) {
+                Log.e("AppViewModel", "Verify OTP error", e)
+                _errorMessage.value = "Network error: ${e.localizedMessage}"
+                onResult(null)
+            } finally {
+                _isLoading.value = false
+            }
+        }
+    }
+
     fun verifyPinWithSbtet(pin: String, onResult: (VerifiedStudentDto?) -> Unit) {
         viewModelScope.launch {
             _isLoading.value = true

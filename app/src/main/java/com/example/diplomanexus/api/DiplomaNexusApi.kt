@@ -7,6 +7,12 @@ import retrofit2.http.*
 
 interface DiplomaNexusApi {
 
+    @POST("api/auth/send-sbtet-otp")
+    suspend fun sendSbtetOtp(@Body request: SendSbtetOtpRequest): Response<SendSbtetOtpResponse>
+
+    @POST("api/auth/verify-sbtet-otp")
+    suspend fun verifySbtetOtp(@Body request: VerifySbtetOtpRequest): Response<VerifyPinResponse>
+
     @POST("api/auth/verify-pin")
     suspend fun verifyPin(@Body request: VerifyPinRequest): Response<VerifyPinResponse>
 

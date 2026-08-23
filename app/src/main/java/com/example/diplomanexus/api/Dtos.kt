@@ -20,6 +20,22 @@ data class VerifyPinRequest(
     val pin: String
 )
 
+data class SendSbtetOtpRequest(
+    val pin: String,
+    val mobile: String
+)
+
+data class SendSbtetOtpResponse(
+    val success: Boolean,
+    val message: String
+)
+
+data class VerifySbtetOtpRequest(
+    val pin: String,
+    val mobile: String,
+    val otp: String
+)
+
 data class VerifiedStudentDto(
     val pin: String,
     val name: String,
