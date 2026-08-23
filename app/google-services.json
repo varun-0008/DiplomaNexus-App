@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "626231386453",
+    "project_id": "diplomaconnect-2ea34",
+    "storage_bucket": "diplomaconnect-2ea34.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626231386453:android:9805fcd2e7f0d6ea82cfdc",
+        "android_client_info": {
+          "package_name": "com.example.diplomanexus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBQinyEGCS9BgYV9so1u7gN0FwLpoMjBoU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

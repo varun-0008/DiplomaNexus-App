@@ -1,0 +1,353 @@
+﻿.\gradlew : WARNING: A restricted method in java.lang.System has been called
+At line:1 char:1
++ .\gradlew assembleDebug --info 2>&1 | Out-File -FilePath "build_outpu ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (WARNING: A rest...has been called:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+WARNING: java.lang.System::load has been called by net.rubygrapefruit.platform.internal.NativeLibraryLoader in an 
+unnamed module (file:/C:/Users/kompe/.gradle/wrapper/dists/gradle-9.1.0-bin/9agqghryom9wkf8r80qlhnts3/gradle-9.1.0/lib/
+native-platform-0.22-milestone-28.jar)
+WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
+WARNING: Restricted methods will be blocked in a future release unless native access is enabled
+
+Initialized native services in: C:\Users\kompe\.gradle\native
+Initialized jansi services in: C:\Users\kompe\.gradle\native
+Removing daemon from the registry due to communication failure. Daemon information: DaemonInfo{pid=6236, address=[2e3bee59-d4f5-4886-91e7-ec144eab4073 port:65100, addresses:[/127.0.0.1]], state=Idle, lastBusy=1781115724560, context=DefaultDaemonContext[uid=16bba542-a5ea-4176-96ca-39a2fa863764,javaHome=C:\Users\kompe\.gradle\jdks\jetbrains_s_r_o_-21-amd64-windows.2,javaVersion=21,javaVendor=JetBrains s.r.o.,daemonRegistryDir=C:\Users\kompe\.gradle\daemon,pid=6236,idleTimeout=10800000,priority=NORMAL,applyInstrumentationAgent=true,nativeServicesMode=ENABLED,daemonOpts=-Xmx2048m,-Dfile.encoding=UTF-8,-Duser.country=IN,-Duser.language=en,-Duser.variant]}
+Removing 0 daemon stop events from registry
+Previous Daemon (1876) stopped at Wed Jun 10 23:32:09 IST 2026 after being idle for 6 minutes and not recently used and to reclaim system physical memory
+Previous Daemon (7840) stopped at Wed Jun 10 23:36:07 IST 2026 after being idle for 4 minutes and not recently used and to reclaim system physical memory
+Previous Daemon (26540) stopped at Wed Jun 10 23:41:09 IST 2026 stop command received
+Previous Daemon (13840) stopped at Wed Jun 10 22:56:26 IST 2026 by user or operating system
+Previous Daemon (13428) stopped at Wed Jun 10 23:03:01 IST 2026 by user or operating system
+Previous Daemon (2932) stopped at Wed Jun 10 23:23:13 IST 2026 by user or operating system
+Previous Daemon (27232) stopped at Wed Jun 10 23:52:02 IST 2026 by user or operating system
+Previous Daemon (6236) stopped at Wed Jun 10 23:52:27 IST 2026 by user or operating system
+Starting a Gradle Daemon, 1 incompatible and 8 stopped Daemons could not be reused, use --status for details
+Daemon JVM discovery is an incubating feature.
+Received JVM installation metadata from 'C:\Program Files\Java\jdk-25.0.2': {JAVA_HOME=C:\Program Files\Java\jdk-25.0.2, JAVA_VERSION=25.0.2, JAVA_VENDOR=Oracle Corporation, RUNTIME_NAME=Java(TM) SE Runtime Environment, RUNTIME_VERSION=25.0.2+10-LTS-69, VM_NAME=Java HotSpot(TM) 64-Bit Server VM, VM_VERSION=25.0.2+10-LTS-69, VM_VENDOR=Oracle Corporation, OS_ARCH=amd64}
+Starting process 'Gradle build daemon'. Working directory: C:\Users\kompe\.gradle\daemon\9.1.0 Command: C:\Users\kompe\.gradle\jdks\jetbrains_s_r_o_-21-amd64-windows.2\bin\java.exe --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.api=ALL-UNNAMED --add-exports=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.prefs/java.util.prefs=ALL-UNNAMED --add-opens=java.base/java.nio.charset=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.xml/javax.xml.namespace=ALL-UNNAMED --add-opens=java.base/java.time=ALL-UNNAMED -Xmx2048m -Dfile.encoding=UTF-8 -Duser.country=IN -Duser.language=en -Duser.variant -cp C:\Users\kompe\.gradle\wrapper\dists\gradle-9.1.0-bin\9agqghryom9wkf8r80qlhnts3\gradle-9.1.0\lib\gradle-daemon-main-9.1.0.jar -javaagent:C:\Users\kompe\.gradle\wrapper\dists\gradle-9.1.0-bin\9agqghryom9wkf8r80qlhnts3\gradle-9.1.0\lib\agents\gradle-instrumentation-agent-9.1.0.jar org.gradle.launcher.daemon.bootstrap.GradleDaemon 9.1.0
+Successfully started process 'Gradle build daemon'
+An attempt to start the daemon took 1.24 secs.
+The client will now receive all logging from the daemon (pid: 1208). The daemon log file: C:\Users\kompe\.gradle\daemon\9.1.0\daemon-1208.out.log
+Starting build in new daemon [memory: 2 GiB]
+Using 12 worker leases.
+Received JVM installation metadata from 'C:\Users\kompe\.gradle\jdks\jetbrains_s_r_o_-21-amd64-windows.2': {JAVA_HOME=C:\Users\kompe\.gradle\jdks\jetbrains_s_r_o_-21-amd64-windows.2, JAVA_VERSION=21.0.11, JAVA_VENDOR=JetBrains s.r.o., RUNTIME_NAME=Java(TM) SE Runtime Environment, RUNTIME_VERSION=21.0.11+1-b1163.116, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=21.0.11+1-b1163.116, VM_VENDOR=JetBrains s.r.o., OS_ARCH=amd64}
+Encryption key source: default Gradle keystore (pkcs12)
+Reusing configuration cache.
+Watching the file system is configured to be enabled if available
+Now considering [C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp] as hierarchies to watch
+File system watching is active
+Using local directory build cache for the root build (location = C:\Users\kompe\.gradle\caches\build-cache-1, remove unused entries = after 7 days).
+Tasks to be executed: [task ':app:preBuild', task ':app:preDebugBuild', task ':app:mergeDebugNativeDebugMetadata', task ':app:generateDebugResources', task ':app:packageDebugResources', task ':app:processDebugNavigationResources', task ':app:parseDebugLocalResources', task ':app:generateDebugRFile', task ':app:compileDebugKotlin', task ':app:javaPreCompileDebug', task ':app:compileDebugJavaWithJavac', task ':app:generateDebugAssets', task ':app:mergeDebugAssets', task ':app:compressDebugAssets', task ':app:desugarDebugFileDependencies', task ':app:checkDebugAarMetadata', task ':app:compileDebugNavigationResources', task ':app:mapDebugSourceSetPaths', task ':app:mergeDebugResources', task ':app:createDebugCompatibleScreenManifests', task ':app:extractDeepLinksDebug', task ':app:processDebugMainManifest', task ':app:processDebugManifest', task ':app:processDebugManifestForPackage', task ':app:processDebugResources', task ':app:dexBuilderDebug', task ':app:mergeDebugGlobalSynthetics', task ':app:processDebugJavaRes', task ':app:mergeDebugJavaResource', task ':app:checkDebugDuplicateClasses', task ':app:mergeExtDexDebug', task ':app:mergeLibDexDebug', task ':app:mergeProjectDexDebug', task ':app:mergeDebugJniLibFolders', task ':app:mergeDebugNativeLibs', task ':app:stripDebugDebugSymbols', task ':app:validateSigningDebug', task ':app:writeDebugAppMetadata', task ':app:writeDebugSigningConfigVersions', task ':app:packageDebug', task ':app:createDebugApkListingFileRedirect', task ':app:assembleDebug']
+Tasks that were excluded: []
+Resolve mutations for :app:preBuild (Thread[#64,Execution worker Thread 2,5,main]) started.
+Resolve mutations for :app:generateDebugAssets (Thread[#73,Execution worker Thread 11,5,main]) started.
+:app:preBuild (Thread[#64,Execution worker Thread 2,5,main]) started.
+:app:generateDebugAssets (Thread[#73,Execution worker Thread 11,5,main]) started.
+
+> Task :app:generateDebugAssets UP-TO-DATE
+Skipping task ':app:generateDebugAssets' as it has no actions.
+
+> Task :app:preBuild UP-TO-DATE
+Skipping task ':app:preBuild' as it has no actions.
+Resolve mutations for :app:preDebugBuild (Thread[#64,Execution worker Thread 2,5,main]) started.
+:app:preDebugBuild (Thread[#64,Execution worker Thread 2,5,main]) started.
+
+> Task :app:preDebugBuild UP-TO-DATE
+Skipping task ':app:preDebugBuild' as it has no actions.
+Resolve mutations for :app:mergeDebugNativeDebugMetadata (Thread[#66,Execution worker Thread 4,5,main]) started.
+Resolve mutations for :app:generateDebugResources (Thread[#63,Execution worker,5,main]) started.
+Resolve mutations for :app:processDebugNavigationResources (Thread[#72,Execution worker Thread 10,5,main]) started.
+Resolve mutations for :app:javaPreCompileDebug (Thread[#64,Execution worker Thread 2,5,main]) started.
+Resolve mutations for :app:mergeDebugAssets (Thread[#67,Execution worker Thread 5,5,main]) started.
+Resolve mutations for :app:checkDebugAarMetadata (Thread[#68,Execution worker Thread 6,5,main]) started.
+Resolve mutations for :app:desugarDebugFileDependencies (Thread[#65,Execution worker Thread 3,5,main]) started.
+Resolve mutations for :app:mapDebugSourceSetPaths (Thread[#69,Execution worker Thread 7,5,main]) started.
+Resolve mutations for :app:createDebugCompatibleScreenManifests (Thread[#70,Execution worker Thread 8,5,main]) started.
+Resolve mutations for :app:extractDeepLinksDebug (Thread[#71,Execution worker Thread 9,5,main]) started.
+Resolve mutations for :app:checkDebugDuplicateClasses (Thread[#62,included builds,5,main]) started.
+Resolve mutations for :app:mergeDebugJniLibFolders (Thread[#73,Execution worker Thread 11,5,main]) started.
+:app:mergeDebugNativeDebugMetadata (Thread[#66,Execution worker Thread 4,5,main]) started.
+:app:mapDebugSourceSetPaths (Thread[#69,Execution worker Thread 7,5,main]) started.
+:app:extractDeepLinksDebug (Thread[#71,Execution worker Thread 9,5,main]) started.
+:app:desugarDebugFileDependencies (Thread[#65,Execution worker Thread 3,5,main]) started.
+:app:checkDebugAarMetadata (Thread[#68,Execution worker Thread 6,5,main]) started.
+:app:checkDebugDuplicateClasses (Thread[#62,included builds,5,main]) started.
+:app:javaPreCompileDebug (Thread[#64,Execution worker Thread 2,5,main]) started.
+:app:mergeDebugJniLibFolders (Thread[#73,Execution worker Thread 11,5,main]) started.
+:app:mergeDebugAssets (Thread[#67,Execution worker Thread 5,5,main]) started.
+:app:processDebugNavigationResources (Thread[#72,Execution worker Thread 10,5,main]) started.
+:app:generateDebugResources (Thread[#63,Execution worker,5,main]) started.
+Build 4e953068-fa6e-4d75-91a0-f6d036df2ca2 is started
+:app:createDebugCompatibleScreenManifests (Thread[#70,Execution worker Thread 8,5,main]) started.
+
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+Skipping task ':app:mergeDebugNativeDebugMetadata' as it has no source files and no previous output files.
+Resolve mutations for :app:validateSigningDebug (Thread[#66,Execution worker Thread 4,5,main]) started.
+:app:validateSigningDebug (Thread[#66,Execution worker Thread 4,5,main]) started.
+
+> Task :app:validateSigningDebug UP-TO-DATE
+Caching disabled for task ':app:validateSigningDebug' because:
+  Caching has been disabled for the task
+Skipping task ':app:validateSigningDebug' as it is up-to-date.
+
+> Task :app:generateDebugResources UP-TO-DATE
+Build cache key for task ':app:generateDebugResources' is 750f2898c9484c25c18a54f1c5346cf7
+Skipping task ':app:generateDebugResources' as it is up-to-date.
+
+> Task :app:javaPreCompileDebug UP-TO-DATE
+Build cache key for task ':app:javaPreCompileDebug' is ce230089daa6ebb466666d79a20b7b27
+Skipping task ':app:javaPreCompileDebug' as it is up-to-date.
+
+> Task :app:createDebugCompatibleScreenManifests UP-TO-DATE
+Caching disabled for task ':app:createDebugCompatibleScreenManifests' because:
+  Caching has been disabled for the task
+Skipping task ':app:createDebugCompatibleScreenManifests' as it is up-to-date.
+
+> Task :app:extractDeepLinksDebug UP-TO-DATE
+Build cache key for task ':app:extractDeepLinksDebug' is 31001201c167f814b8d62ab47e2bc24c
+Skipping task ':app:extractDeepLinksDebug' as it is up-to-date.
+
+> Task :app:mergeDebugJniLibFolders UP-TO-DATE
+Caching disabled for task ':app:mergeDebugJniLibFolders' because:
+  Simple merging task
+Skipping task ':app:mergeDebugJniLibFolders' as it is up-to-date.
+Resolve mutations for :app:writeDebugSigningConfigVersions (Thread[#70,Execution worker Thread 8,5,main]) started.
+
+> Task :app:desugarDebugFileDependencies UP-TO-DATE
+Build cache key for task ':app:desugarDebugFileDependencies' is 7312a5e7c5892ab15e41c6ae45077f98
+Skipping task ':app:desugarDebugFileDependencies' as it is up-to-date.
+Resolve mutations for :app:writeDebugAppMetadata (Thread[#66,Execution worker Thread 4,5,main]) started.
+Resolve mutations for :app:mergeDebugNativeLibs (Thread[#73,Execution worker Thread 11,5,main]) started.
+Resolve mutations for :app:processDebugMainManifest (Thread[#71,Execution worker Thread 9,5,main]) started.
+:app:writeDebugAppMetadata (Thread[#66,Execution worker Thread 4,5,main]) started.
+:app:writeDebugSigningConfigVersions (Thread[#70,Execution worker Thread 8,5,main]) started.
+:app:processDebugMainManifest (Thread[#71,Execution worker Thread 9,5,main]) started.
+Resolve mutations for :app:packageDebugResources (Thread[#63,Execution worker,5,main]) started.
+Resolve mutations for :app:mergeDebugResources (Thread[#64,Execution worker Thread 2,5,main]) started.
+:app:mergeDebugNativeLibs (Thread[#73,Execution worker Thread 11,5,main]) started.
+
+> Task :app:writeDebugAppMetadata UP-TO-DATE
+Caching disabled for task ':app:writeDebugAppMetadata' because:
+  Caching has been disabled for the task
+Skipping task ':app:writeDebugAppMetadata' as it is up-to-date.
+
+> Task :app:writeDebugSigningConfigVersions UP-TO-DATE
+Caching disabled for task ':app:writeDebugSigningConfigVersions' because:
+  Caching has been disabled for the task
+Skipping task ':app:writeDebugSigningConfigVersions' as it is up-to-date.
+:app:packageDebugResources (Thread[#64,Execution worker Thread 2,5,main]) started.
+:app:mergeDebugResources (Thread[#63,Execution worker,5,main]) started.
+
+> Task :app:packageDebugResources UP-TO-DATE
+Build cache key for task ':app:packageDebugResources' is b67510df13915405d9a1fef73ef6908f
+Skipping task ':app:packageDebugResources' as it is up-to-date.
+
+> Task :app:checkDebugAarMetadata UP-TO-DATE
+Caching disabled for task ':app:checkDebugAarMetadata' because:
+  Caching has been disabled for the task
+Skipping task ':app:checkDebugAarMetadata' as it is up-to-date.
+
+> Task :app:mergeDebugNativeLibs UP-TO-DATE
+Caching disabled for task ':app:mergeDebugNativeLibs' because:
+  Caching has been disabled for the task
+Skipping task ':app:mergeDebugNativeLibs' as it is up-to-date.
+Resolve mutations for :app:stripDebugDebugSymbols (Thread[#73,Execution worker Thread 11,5,main]) started.
+:app:stripDebugDebugSymbols (Thread[#73,Execution worker Thread 11,5,main]) started.
+
+> Task :app:stripDebugDebugSymbols UP-TO-DATE
+Caching disabled for task ':app:stripDebugDebugSymbols' because:
+  Caching has been disabled for the task
+Skipping task ':app:stripDebugDebugSymbols' as it is up-to-date.
+
+> Task :app:mergeDebugAssets UP-TO-DATE
+Caching disabled for task ':app:mergeDebugAssets' because:
+  Simple merging task
+Skipping task ':app:mergeDebugAssets' as it is up-to-date.
+Resolve mutations for :app:compressDebugAssets (Thread[#67,Execution worker Thread 5,5,main]) started.
+:app:compressDebugAssets (Thread[#67,Execution worker Thread 5,5,main]) started.
+
+> Task :app:compressDebugAssets UP-TO-DATE
+Build cache key for task ':app:compressDebugAssets' is baad14838956deb2c75cc97a46a242e8
+Skipping task ':app:compressDebugAssets' as it is up-to-date.
+
+> Task :app:mapDebugSourceSetPaths UP-TO-DATE
+Caching disabled for task ':app:mapDebugSourceSetPaths' because:
+  Caching has been disabled for the task
+Skipping task ':app:mapDebugSourceSetPaths' as it is up-to-date.
+
+> Task :app:mergeDebugResources UP-TO-DATE
+Build cache key for task ':app:mergeDebugResources' is 891a8e0c77865b67522230c7e0f30f58
+Skipping task ':app:mergeDebugResources' as it is up-to-date.
+
+> Task :app:checkDebugDuplicateClasses UP-TO-DATE
+Caching disabled for task ':app:checkDebugDuplicateClasses' because:
+  Caching has been disabled for the task
+Skipping task ':app:checkDebugDuplicateClasses' as it is up-to-date.
+Resolve mutations for :app:mergeExtDexDebug (Thread[#62,included builds,5,main]) started.
+:app:mergeExtDexDebug (Thread[#62,included builds,5,main]) started.
+Resolve mutations for :app:mergeLibDexDebug (Thread[#63,Execution worker,5,main]) started.
+:app:mergeLibDexDebug (Thread[#63,Execution worker,5,main]) started.
+
+> Task :app:mergeLibDexDebug UP-TO-DATE
+Build cache key for task ':app:mergeLibDexDebug' is 175319e8a2e0d65fdd5503972b2fa19b
+Skipping task ':app:mergeLibDexDebug' as it is up-to-date.
+
+> Task :app:processDebugMainManifest UP-TO-DATE
+Build cache key for task ':app:processDebugMainManifest' is 94d9e6211b595364f502b53c1d5643f5
+Skipping task ':app:processDebugMainManifest' as it is up-to-date.
+Resolve mutations for :app:processDebugManifest (Thread[#71,Execution worker Thread 9,5,main]) started.
+
+> Task :app:processDebugNavigationResources UP-TO-DATE
+Build cache key for task ':app:processDebugNavigationResources' is d3d74cf4a9b36f7d1a968e153da229d8
+Skipping task ':app:processDebugNavigationResources' as it is up-to-date.
+Resolve mutations for :app:parseDebugLocalResources (Thread[#72,Execution worker Thread 10,5,main]) started.
+Resolve mutations for :app:compileDebugNavigationResources (Thread[#71,Execution worker Thread 9,5,main]) started.
+:app:parseDebugLocalResources (Thread[#72,Execution worker Thread 10,5,main]) started.
+:app:compileDebugNavigationResources (Thread[#71,Execution worker Thread 9,5,main]) started.
+
+> Task :app:compileDebugNavigationResources UP-TO-DATE
+Build cache key for task ':app:compileDebugNavigationResources' is 0e98b08b7eb5195faf3b2df374c0b655
+Skipping task ':app:compileDebugNavigationResources' as it is up-to-date.
+:app:processDebugManifest (Thread[#71,Execution worker Thread 9,5,main]) started.
+
+> Task :app:processDebugManifest UP-TO-DATE
+Build cache key for task ':app:processDebugManifest' is 2dd9f94757010dc42b40cd09e04e31c9
+Skipping task ':app:processDebugManifest' as it is up-to-date.
+Resolve mutations for :app:processDebugManifestForPackage (Thread[#71,Execution worker Thread 9,5,main]) started.
+:app:processDebugManifestForPackage (Thread[#71,Execution worker Thread 9,5,main]) started.
+
+> Task :app:processDebugManifestForPackage UP-TO-DATE
+Build cache key for task ':app:processDebugManifestForPackage' is c1a42bd960555ed482e3e8cdade10232
+Skipping task ':app:processDebugManifestForPackage' as it is up-to-date.
+
+> Task :app:parseDebugLocalResources UP-TO-DATE
+Build cache key for task ':app:parseDebugLocalResources' is a6f04827afc72fdda6f0b381d286628c
+Skipping task ':app:parseDebugLocalResources' as it is up-to-date.
+Resolve mutations for :app:generateDebugRFile (Thread[#72,Execution worker Thread 10,5,main]) started.
+:app:generateDebugRFile (Thread[#72,Execution worker Thread 10,5,main]) started.
+
+> Task :app:generateDebugRFile UP-TO-DATE
+Build cache key for task ':app:generateDebugRFile' is 7e90238eea5d783e69cf009175c6aa8a
+Skipping task ':app:generateDebugRFile' as it is up-to-date.
+Resolve mutations for :app:compileDebugKotlin (Thread[#72,Execution worker Thread 10,5,main]) started.
+:app:compileDebugKotlin (Thread[#72,Execution worker Thread 10,5,main]) started.
+Resolve mutations for :app:processDebugResources (Thread[#71,Execution worker Thread 9,5,main]) started.
+:app:processDebugResources (Thread[#71,Execution worker Thread 9,5,main]) started.
+
+> Task :app:mergeExtDexDebug UP-TO-DATE
+Build cache key for task ':app:mergeExtDexDebug' is 7d62a732e50374da403b58829e9963dd
+Skipping task ':app:mergeExtDexDebug' as it is up-to-date.
+
+> Task :app:processDebugResources UP-TO-DATE
+Build cache key for task ':app:processDebugResources' is f9ea0dd58362582ebe69fd4b9c465511
+Warning: SDK processing. This version only understands SDK XML versions up to 3 but an SDK XML file of version 4 was 
+encountered. This can happen if you use versions of Android Studio and the command-line tools that were released at 
+different times.
+Skipping task ':app:processDebugResources' as it is up-to-date.
+
+> Task :app:compileDebugKotlin
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+Build cache key for task ':app:compileDebugKotlin' is 25c519956eace8f71f9409286a8435e3
+Task ':app:compileDebugKotlin' is not up-to-date because:
+  Input property 'sources' file C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\theme\Color.kt has changed.
+  Input property 'sources' file C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\theme\Theme.kt has changed.
+  Input property 'sources' file C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\ui\screens\FeedScreen.kt has changed.
+  and more...
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\kotlin', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+file or directory 'C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\debug\java', not found
+Kotlin source files: C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\api\DiplomaConnectApi.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\api\Dtos.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\data\SessionManager.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\MainActivity.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\Navigation.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\NavigationKeys.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\theme\Color.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\theme\Theme.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\theme\Type.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\ui\main\MainScreen.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\ui\screens\AcademicsScreen.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\ui\screens\BlogsScreen.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\ui\screens\FeedScreen.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\ui\screens\LoginScreen.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\ui\screens\ProfileScreen.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\ui\screens\VerificationScreen.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\ui\screens\WelcomeScreen.kt, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\src\main\java\com\example\diplomaconnect\viewmodel\AppViewModel.kt
+Java source files: 
+Script source files: 
+Script file extensions: 
+Using Kotlin/JVM incremental compilation
+[KOTLIN] Kotlin compilation 'jdkHome' argument: C:\Users\kompe\.gradle\jdks\eclipse_adoptium-17-amd64-windows.2
+i: cannot connect to registry: Connection refused: connect
+i: cannot connect to registry: Connection refused: connect
+i: starting the daemon as: C:\Users\kompe\.gradle\jdks\jetbrains_s_r_o_-21-amd64-windows.2\bin\java -cp C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-build-tools-compat\2.3.20\649d59d16f0dc2427cc900a8b003496ad39aaa33\kotlin-build-tools-compat-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-build-tools-impl\2.3.20\90a14213a621db275bf64e605e6c849d482656be\kotlin-build-tools-impl-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-tooling-core\2.3.20\7a050c09910ee587944bc2a7413e2d97d751f647\kotlin-tooling-core-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-build-tools-cri-impl\2.3.20\52abdf3a26f3f71b94b90b45ad54f6a64610dcba\kotlin-build-tools-cri-impl-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-build-tools-api\2.3.20\9d10b958f69ea67132d24ce9c759cf60465f29a5\kotlin-build-tools-api-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-compiler-runner\2.3.20\11f74384a212c68bb6eb18ab6cd2cdf6354901b8\kotlin-compiler-runner-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-compiler-embeddable\2.3.20\2fac4210c52c27b244305d60b0906e831f49be\kotlin-compiler-embeddable-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-daemon-client\2.3.20\d1f3f5c2efb2ed264dd3dfaf3ae8a581cbf47138\kotlin-daemon-client-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\2.3.20\ed866de74ad3d49086a27bbd75952cd186479436\kotlin-stdlib-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains\annotations\13.0\919f0dfe192fb4e063e7dacadee7f8bb9a2672a9\annotations-13.0.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-script-runtime\2.3.20\4831ca1fea87f25bf39891ff56327b23b18c9bfa\kotlin-script-runtime-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-reflect\1.6.10\1cbe9c92c12a94eea200d23c2bbaedaf3daf5132\kotlin-reflect-1.6.10.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-daemon-embeddable\2.3.20\92a638246f2a388e2ccf43784623b1c685c93ab8\kotlin-daemon-embeddable-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlinx\kotlinx-coroutines-core-jvm\1.8.0\ac1dc37a30a93150b704022f8d895ee1bd3a36b3\kotlinx-coroutines-core-jvm-1.8.0.jar -Djava.awt.headless=true -Djava.rmi.server.hostname=127.0.0.1 -Xmx2048m -XX:ReservedCodeCacheSize=320m -ea -Dkotlin.daemon.custom.run.files.path.for.tests=C:\Users\kompe\AppData\Local\kotlin\daemon -XX:+UseCodeCacheFlushing -XX:+UseParallelGC -Dkotlin.daemon.initiator.marker.file=C:\Users\kompe\AppData\Local\Temp\kotlin-compiler-client-856428709482089832-is-running --add-exports java.base/sun.nio.ch=ALL-UNNAMED org.jetbrains.kotlin.daemon.KotlinCompileDaemon --daemon-runFilesPath C:\Users\kompe\AppData\Local\kotlin\daemon --daemon-autoshutdownIdleSeconds=7200 --daemon-compilerClasspath C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-build-tools-compat\2.3.20\649d59d16f0dc2427cc900a8b003496ad39aaa33\kotlin-build-tools-compat-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-build-tools-impl\2.3.20\90a14213a621db275bf64e605e6c849d482656be\kotlin-build-tools-impl-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-tooling-core\2.3.20\7a050c09910ee587944bc2a7413e2d97d751f647\kotlin-tooling-core-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-build-tools-cri-impl\2.3.20\52abdf3a26f3f71b94b90b45ad54f6a64610dcba\kotlin-build-tools-cri-impl-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-build-tools-api\2.3.20\9d10b958f69ea67132d24ce9c759cf60465f29a5\kotlin-build-tools-api-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-compiler-runner\2.3.20\11f74384a212c68bb6eb18ab6cd2cdf6354901b8\kotlin-compiler-runner-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-compiler-embeddable\2.3.20\2fac4210c52c27b244305d60b0906e831f49be\kotlin-compiler-embeddable-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-daemon-client\2.3.20\d1f3f5c2efb2ed264dd3dfaf3ae8a581cbf47138\kotlin-daemon-client-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\2.3.20\ed866de74ad3d49086a27bbd75952cd186479436\kotlin-stdlib-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains\annotations\13.0\919f0dfe192fb4e063e7dacadee7f8bb9a2672a9\annotations-13.0.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-script-runtime\2.3.20\4831ca1fea87f25bf39891ff56327b23b18c9bfa\kotlin-script-runtime-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-reflect\1.6.10\1cbe9c92c12a94eea200d23c2bbaedaf3daf5132\kotlin-reflect-1.6.10.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-daemon-embeddable\2.3.20\92a638246f2a388e2ccf43784623b1c685c93ab8\kotlin-daemon-embeddable-2.3.20.jar;C:\Users\kompe\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlinx\kotlinx-coroutines-core-jvm\1.8.0\ac1dc37a30a93150b704022f8d895ee1bd3a36b3\kotlinx-coroutines-core-jvm-1.8.0.jar
+i: #1 retrying connecting to the daemon 
+i: cannot connect to registry: Connection refused: connect
+i: cannot connect to registry: Connection refused: connect
+i: Options for KOTLIN DAEMON: IncrementalCompilationOptions(super=CompilationOptions(compilerMode=INCREMENTAL_COMPILER, targetPlatform=JVM, reportCategories=[0], reportSeverity=2, requestedCompilationResults=[0], kotlinScriptExtensions=[], generateCompilerRefIndex=false), sourceChanges=org.jetbrains.kotlin.buildtools.api.SourcesChanges$Known@74c5c839, classpathChanges=NoChanges, workingDir=C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\build\kotlin\compileDebugKotlin\cacheable, multiModuleICSettings=null, icFeatures=IncrementalCompilationFeatures(usePreciseJavaTracking=true, withAbiSnapshot=false, preciseCompilationResultsBackup=true, keepIncrementalCompilationCachesInMemory=true, enableUnsafeIncrementalCompilationForMultiplatform=false, enableMonotonousIncrementalCompileSetExpansion=true), outputFiles=[C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\build\intermediates\built_in_kotlinc\debug\compileDebugKotlin\classes, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\build\kotlin\compileDebugKotlin\cacheable, C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp\app\build\kotlin\compileDebugKotlin\local-state])
+e: file:///C:/Users/kompe/.gemini/antigravity/scratch/DiplomaConnectApp/app/src/main/java/com/example/diplomaconnect/ui
+/screens/FeedScreen.kt:164:57 None of the following candidates is applicable:
+
+fun Modifier.padding(start: Dp = ..., top: Dp = ..., end: Dp = ..., bottom: Dp = ...): Modifier:
+  No parameter with name 'horizontal' found.
+
+fun Modifier.padding(horizontal: Dp = ..., vertical: Dp = ...): Modifier:
+  No parameter with name 'top' found.
+
+fun Modifier.padding(all: Dp): Modifier:
+  No parameter with name 'top' found.
+  No parameter with name 'horizontal' found.
+  No value passed for parameter 'all'.
+
+fun Modifier.padding(paddingValues: PaddingValues): Modifier:
+  No parameter with name 'top' found.
+  No parameter with name 'horizontal' found.
+  No value passed for parameter 'paddingValues'.
+i: Finished executing kotlin compiler using DAEMON strategy
+
+> Task :app:compileDebugKotlin FAILED
+Build 4e953068-fa6e-4d75-91a0-f6d036df2ca2 is closed
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.btapi.BuildToolsApiCompilationWork
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+> Run with --scan to generate a Build Scan (Powered by Develocity).
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 17s
+29 actionable tasks: 1 executed, 28 up-to-date
+Watched directory hierarchies: [C:\Users\kompe\.gemini\antigravity\scratch\DiplomaConnectApp]
+Configuration cache entry reused.
