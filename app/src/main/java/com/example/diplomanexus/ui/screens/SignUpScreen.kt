@@ -84,7 +84,7 @@ fun SignUpScreen(
             // App Logo Badge
             Box(
                 modifier = Modifier
-                    .size(64.dp)
+                    .size(72.dp)
                     .clip(CircleShape)
                     .background(
                         Brush.linearGradient(
@@ -94,11 +94,12 @@ fun SignUpScreen(
                     .border(1.5.dp, Brush.linearGradient(listOf(ElectricBlue, NeonPurple)), CircleShape),
                 contentAlignment = Alignment.Center
             ) {
-                Icon(
-                    imageVector = Icons.Default.School,
-                    contentDescription = "DiplomaNexus Logo",
-                    tint = Color.White,
-                    modifier = Modifier.size(32.dp)
+                androidx.compose.foundation.Image(
+                    painter = androidx.compose.ui.res.painterResource(id = com.example.diplomanexus.R.drawable.app_logo),
+                    contentDescription = "DiplomaNexus Identity Logo",
+                    modifier = Modifier
+                        .size(56.dp)
+                        .clip(CircleShape)
                 )
             }
 

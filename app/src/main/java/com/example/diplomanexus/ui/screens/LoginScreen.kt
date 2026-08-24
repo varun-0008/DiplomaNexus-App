@@ -113,17 +113,18 @@ fun LoginScreen(
                 Box(
                     contentAlignment = Alignment.Center,
                     modifier = Modifier
-                        .size(64.dp)
+                        .size(72.dp)
                         .clip(CircleShape)
                         .background(Color.White.copy(alpha = 0.06f))
-                        .border(1.dp, Color.White.copy(alpha = 0.1f), CircleShape)
-                        .padding(12.dp)
+                        .border(1.dp, Color.White.copy(alpha = 0.15f), CircleShape)
+                        .padding(4.dp)
                 ) {
-                    Icon(
-                        imageVector = Icons.Default.Hub,
-                        contentDescription = "Logo",
-                        tint = BrandOrange,
-                        modifier = Modifier.size(32.dp)
+                    androidx.compose.foundation.Image(
+                        painter = androidx.compose.ui.res.painterResource(id = com.example.diplomanexus.R.drawable.app_logo),
+                        contentDescription = "DiplomaNexus Identity Logo",
+                        modifier = Modifier
+                            .size(60.dp)
+                            .clip(CircleShape)
                     )
                 }
 

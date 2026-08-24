@@ -107,7 +107,7 @@ fun SplashScreen(
             // App Logo Box
             Box(
                 modifier = Modifier
-                    .size(100.dp)
+                    .size(105.dp)
                     .clip(CircleShape)
                     .background(
                         Brush.linearGradient(
@@ -117,11 +117,12 @@ fun SplashScreen(
                     .border(2.dp, Brush.linearGradient(listOf(ElectricBlue, NeonPurple)), CircleShape),
                 contentAlignment = Alignment.Center
             ) {
-                Icon(
-                    imageVector = Icons.Default.School,
-                    contentDescription = "DiplomaNexus Logo",
-                    tint = Color.White,
-                    modifier = Modifier.size(52.dp)
+                androidx.compose.foundation.Image(
+                    painter = androidx.compose.ui.res.painterResource(id = com.example.diplomanexus.R.drawable.app_logo),
+                    contentDescription = "DiplomaNexus Identity Logo",
+                    modifier = Modifier
+                        .size(82.dp)
+                        .clip(CircleShape)
                 )
             }
 
