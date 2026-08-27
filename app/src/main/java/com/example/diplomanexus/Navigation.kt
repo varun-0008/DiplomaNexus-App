@@ -59,10 +59,18 @@ fun MainNavigation() {
           SignUpScreen(
             viewModel = viewModel,
             onSuccess = {
-              backStack.add(Main)
+              backStack.add(Welcome)
             },
             onNavigateToLogin = {
               backStack.add(Login)
+            },
+            modifier = Modifier.fillMaxSize()
+          )
+        }
+        entry<Welcome> {
+          com.example.diplomanexus.ui.screens.WelcomeScreen(
+            onContinueToApp = {
+              backStack.add(Main)
             },
             modifier = Modifier.fillMaxSize()
           )
