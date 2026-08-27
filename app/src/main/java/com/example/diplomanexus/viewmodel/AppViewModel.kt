@@ -233,18 +233,17 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             _isLoading.value = true
             _errorMessage.value = null
             try {
-                val response = api.sendSbtetOtp(SendSbtetOtpRequest(pin.trim(), mobile.trim()))
-                if (response.isSuccessful && response.body()?.success == true) {
-                    onResult(true, response.body()?.message ?: "OTP sent successfully")
+                // Client-side direct verification straight to SBTET government servers!
+                val (success, message) = com.example.diplomanexus.data.SbtetClientFetcher.sendSbtetOtp(pin, mobile)
+                if (success) {
+                    onResult(true, message)
                 } else {
-                    val errorMsg = response.errorBody()?.string() ?: "Failed to send OTP via SBTET"
-                    val parsed = parseError(errorMsg)
-                    _errorMessage.value = parsed
-                    onResult(false, parsed)
+                    _errorMessage.value = message
+                    onResult(false, message)
                 }
             } catch (e: Exception) {
                 Log.e("AppViewModel", "Send OTP error", e)
-                val err = "Network error: ${e.localizedMessage}"
+                val err = "Error contacting SBTET: ${e.localizedMessage}"
                 _errorMessage.value = err
                 onResult(false, err)
             } finally {
@@ -258,17 +257,25 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
             _isLoading.value = true
             _errorMessage.value = null
             try {
-                val response = api.verifySbtetOtp(VerifySbtetOtpRequest(pin.trim(), mobile.trim(), otp.trim()))
-                if (response.isSuccessful && response.body()?.success == true && response.body()?.student != null) {
-                    onResult(response.body()!!.student)
+                // Client-side direct student verification & profile extraction!
+                val student = com.example.diplomanexus.data.SbtetClientFetcher.verifySbtetOtp(pin, mobile, otp)
+                if (student != null) {
+                    val dto = VerifiedStudentDto(
+                        pin = student.pin,
+                        name = student.name,
+                        branch = student.branchName ?: "Diploma",
+                        college = student.collegeName ?: "Polytechnic College",
+                        mobile = student.phoneNumber ?: mobile.trim()
+                    )
+                    onResult(dto)
                 } else {
-                    val errorMsg = response.errorBody()?.string() ?: "Invalid OTP or verification failed"
-                    _errorMessage.value = parseError(errorMsg)
+                    val errorMsg = "Invalid OTP or SBTET student record not found."
+                    _errorMessage.value = errorMsg
                     onResult(null)
                 }
             } catch (e: Exception) {
                 Log.e("AppViewModel", "Verify OTP error", e)
-                _errorMessage.value = "Network error: ${e.localizedMessage}"
+                _errorMessage.value = "Error contacting SBTET: ${e.localizedMessage}"
                 onResult(null)
             } finally {
                 _isLoading.value = false
