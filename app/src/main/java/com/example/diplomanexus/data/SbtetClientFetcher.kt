@@ -42,10 +42,10 @@ object SbtetClientFetcher {
                         InetAddress.getAllByName(hostname).toList()
                     } catch (e2: Exception) {
                         try {
-                            if (hostname == "sbtet.telangana.gov.in") {
-                                InetAddress.getAllByName("www.sbtet.telangana.gov.in").toList()
+                            if (hostname.contains("sbtet.telangana.gov.in")) {
+                                listOf(InetAddress.getByAddress(hostname, byteArrayOf(103.toByte(), 122.toByte(), 128.toByte(), 225.toByte())))
                             } else {
-                                InetAddress.getAllByName("sbtet.telangana.gov.in").toList()
+                                throw e
                             }
                         } catch (e3: Exception) {
                             throw e
