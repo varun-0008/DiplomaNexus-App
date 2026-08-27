@@ -8,6 +8,10 @@ import okhttp3.Request
 import org.json.JSONObject
 import java.util.concurrent.TimeUnit
 
+import java.net.InetAddress
+import java.net.UnknownHostException
+import okhttp3.Dns
+
 data class ClientBonafideStudent(
     val pin: String,
     val name: String,
@@ -29,10 +33,33 @@ object SbtetClientFetcher {
     private const val TAG = "SbtetClientFetcher"
 
     private val client: OkHttpClient by lazy {
+        val customDns = object : Dns {
+            override fun lookup(hostname: String): List<InetAddress> {
+                return try {
+                    Dns.SYSTEM.lookup(hostname)
+                } catch (e: UnknownHostException) {
+                    try {
+                        InetAddress.getAllByName(hostname).toList()
+                    } catch (e2: Exception) {
+                        try {
+                            if (hostname == "sbtet.telangana.gov.in") {
+                                InetAddress.getAllByName("www.sbtet.telangana.gov.in").toList()
+                            } else {
+                                InetAddress.getAllByName("sbtet.telangana.gov.in").toList()
+                            }
+                        } catch (e3: Exception) {
+                            throw e
+                        }
+                    }
+                }
+            }
+        }
+
         OkHttpClient.Builder()
-            .connectTimeout(15, TimeUnit.SECONDS)
-            .readTimeout(15, TimeUnit.SECONDS)
-            .writeTimeout(15, TimeUnit.SECONDS)
+            .connectTimeout(20, TimeUnit.SECONDS)
+            .readTimeout(20, TimeUnit.SECONDS)
+            .writeTimeout(20, TimeUnit.SECONDS)
+            .dns(customDns)
             .retryOnConnectionFailure(true)
             .build()
     }
