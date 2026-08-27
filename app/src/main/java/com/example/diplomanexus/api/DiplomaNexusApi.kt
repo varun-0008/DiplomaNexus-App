@@ -1,5 +1,9 @@
 package com.example.diplomanexus.api
 
+import java.net.InetAddress
+import java.net.UnknownHostException
+import okhttp3.Dns
+import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -174,10 +178,25 @@ interface DiplomaNexusApi {
         private const val BASE_URL = "https://diplomanexus-backend.onrender.com/"
 
         fun create(): DiplomaNexusApi {
-            val okHttpClient = okhttp3.OkHttpClient.Builder()
+            val customDns = object : Dns {
+                override fun lookup(hostname: String): List<InetAddress> {
+                    return try {
+                        Dns.SYSTEM.lookup(hostname)
+                    } catch (e: UnknownHostException) {
+                        try {
+                            InetAddress.getAllByName(hostname).toList()
+                        } catch (e2: Exception) {
+                            throw e
+                        }
+                    }
+                }
+            }
+
+            val okHttpClient = OkHttpClient.Builder()
                 .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
                 .readTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
                 .writeTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                .dns(customDns)
                 .retryOnConnectionFailure(true)
                 .addInterceptor { chain ->
                     val request = chain.request()
