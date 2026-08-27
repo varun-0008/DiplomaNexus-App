@@ -151,25 +151,33 @@ object SbtetClientFetcher {
                 .build()
 
             val response = client.newCall(request).execute()
-            val bodyStr = response.body?.string() ?: ""
+            var bodyStr = response.body?.string() ?: ""
 
             if (response.isSuccessful && bodyStr.isNotBlank()) {
-                // After OTP verification succeeds on SBTET, fetch official bonafide details to return full student profile!
-                val student = getBonafideDetails(cleanPin)
-                if (student != null) {
-                    return@withContext student
+                val json = parseDoubleSerializedJson(bodyStr)
+                val status = json.optString("status", json.optString("Status", ""))
+                val desc = json.optString("description", json.optString("Description", ""))
+                
+                // If SBTET UpdateUserdata returns 200 or Success or Description contains verified/updated/success
+                if (status == "200" || status.contains("200") || status.contains("success", ignoreCase = true) || desc.contains("success", ignoreCase = true) || desc.contains("updated", ignoreCase = true) || desc.contains("verified", ignoreCase = true)) {
+                    val student = getBonafideDetails(cleanPin)
+                    if (student != null) {
+                        return@withContext student
+                    } else {
+                        return@withContext ClientBonafideStudent(
+                            pin = cleanPin,
+                            name = "Verified Student",
+                            fatherName = null,
+                            collegeCode = null,
+                            collegeName = "Polytechnic College",
+                            branchCode = null,
+                            branchName = "Diploma",
+                            phoneNumber = cleanMobile
+                        )
+                    }
                 } else {
-                    // Fallback to basic details if bonafide certificate endpoint is pending
-                    return@withContext ClientBonafideStudent(
-                        pin = cleanPin,
-                        name = "Verified Student",
-                        fatherName = null,
-                        collegeCode = null,
-                        collegeName = "Polytechnic College",
-                        branchCode = null,
-                        branchName = "Diploma",
-                        phoneNumber = cleanMobile
-                    )
+                    Log.e(TAG, "SBTET OTP verification failed: status=$status, desc=$desc")
+                    return@withContext null
                 }
             }
             null
