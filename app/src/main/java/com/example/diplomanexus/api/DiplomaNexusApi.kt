@@ -174,8 +174,34 @@ interface DiplomaNexusApi {
         private const val BASE_URL = "https://diplomanexus-backend.onrender.com/"
 
         fun create(): DiplomaNexusApi {
+            val okHttpClient = okhttp3.OkHttpClient.Builder()
+                .connectTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                .readTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                .writeTimeout(30, java.util.concurrent.TimeUnit.SECONDS)
+                .retryOnConnectionFailure(true)
+                .addInterceptor { chain ->
+                    val request = chain.request()
+                    var response: okhttp3.Response? = null
+                    var exception: Exception? = null
+                    for (attempt in 1..3) {
+                        try {
+                            response = chain.proceed(request)
+                            if (response.isSuccessful || attempt == 3) {
+                                return@addInterceptor response
+                            }
+                        } catch (e: Exception) {
+                            exception = e
+                            if (attempt == 3) throw e
+                            try { Thread.sleep(1000) } catch (_: Exception) {}
+                        }
+                    }
+                    response ?: throw (exception ?: java.io.IOException("Network request failed after 3 retries"))
+                }
+                .build()
+
             return Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(DiplomaNexusApi::class.java)
