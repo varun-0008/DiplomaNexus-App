@@ -182,11 +182,30 @@ object SbtetClientFetcher {
 
             if (response.isSuccessful && bodyStr.isNotBlank()) {
                 val json = parseDoubleSerializedJson(bodyStr)
-                val status = json.optString("status", json.optString("Status", ""))
-                val desc = json.optString("description", json.optString("Description", ""))
-                
-                // If SBTET UpdateUserdata returns 200 or Success or Description contains verified/updated/success
-                if (status == "200" || status.contains("200") || status.contains("success", ignoreCase = true) || desc.contains("success", ignoreCase = true) || desc.contains("updated", ignoreCase = true) || desc.contains("verified", ignoreCase = true)) {
+                var isVerified = false
+                var desc = ""
+
+                if (json.has("Table")) {
+                    val tableArr = json.getJSONArray("Table")
+                    if (tableArr.length() > 0) {
+                        val firstObj = tableArr.getJSONObject(0)
+                        val statusCode = firstObj.optString("StatusCode", firstObj.optString("status", ""))
+                        desc = firstObj.optString("StatusDescription", firstObj.optString("description", ""))
+                        if (statusCode == "200" || desc.contains("Verified", ignoreCase = true) || desc.contains("Success", ignoreCase = true)) {
+                            isVerified = true
+                        }
+                    }
+                }
+
+                if (!isVerified) {
+                    val status = json.optString("status", json.optString("Status", ""))
+                    desc = json.optString("description", json.optString("Description", ""))
+                    if (status == "200" || status.contains("200") || status.contains("success", ignoreCase = true) || desc.contains("Verified", ignoreCase = true) || desc.contains("Success", ignoreCase = true)) {
+                        isVerified = true
+                    }
+                }
+
+                if (isVerified) {
                     val student = getBonafideDetails(cleanPin)
                     if (student != null) {
                         return@withContext student
@@ -203,7 +222,7 @@ object SbtetClientFetcher {
                         )
                     }
                 } else {
-                    Log.e(TAG, "SBTET OTP verification failed: status=$status, desc=$desc")
+                    Log.e(TAG, "SBTET OTP verification failed: desc=$desc")
                     return@withContext null
                 }
             }
