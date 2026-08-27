@@ -815,7 +815,7 @@ fun FeedScreen(
                     verticalArrangement = Arrangement.spacedBy(12.dp)
                 ) {
                     val notifications = listOf(
-                        "Kompelli Varun liked your post" to "5m ago",
+                        "Diploma Nexus Team liked your post" to "5m ago",
                         "Rahul Sharma sent you a message" to "10m ago",
                         "SBTET document uploaded & pending admin verification" to "1h ago",
                         "Admin posted a new announcement: Semester Registration Open" to "1d ago"

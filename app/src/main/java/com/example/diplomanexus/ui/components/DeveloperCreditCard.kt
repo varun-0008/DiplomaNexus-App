@@ -7,11 +7,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.filled.Language
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.Public
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.filled.Security
 import androidx.compose.material.icons.filled.Verified
 import androidx.compose.material3.*
@@ -23,7 +20,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.diplomanexus.theme.*
@@ -85,7 +81,7 @@ fun DeveloperCreditCard(
                         )
                         Spacer(modifier = Modifier.height(4.dp))
                         Text(
-                            text = "A verified, safe & open space for diploma students to ask doubts, share resources, and express ideas freely without facing internet or faculty backlash.",
+                            text = "A verified, safe & open space for diploma students to ask doubts, share resources, and express ideas freely.",
                             color = TextPrimary,
                             fontSize = 12.sp,
                             lineHeight = 17.sp,
@@ -113,19 +109,19 @@ fun DeveloperCreditCard(
                 )
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                    text = "Created by ",
+                    text = "Built by ",
                     color = TextSecondary,
                     fontSize = 13.sp
                 )
                 Text(
-                    text = "Kompellivarun",
+                    text = "Diploma Nexus Team",
                     color = BrandOrange,
                     fontSize = 14.sp,
                     fontWeight = FontWeight.ExtraBold
                 )
                 Icon(
                     imageVector = Icons.Default.Verified,
-                    contentDescription = "Verified Creator",
+                    contentDescription = "Verified Team",
                     tint = VerifiedBlue,
                     modifier = Modifier
                         .padding(start = 4.dp)
@@ -136,7 +132,7 @@ fun DeveloperCreditCard(
             Spacer(modifier = Modifier.height(6.dp))
 
             Text(
-                text = "Founder of Codeminer Community",
+                text = "Official Diploma Community & Support",
                 color = RatingGold,
                 fontSize = 12.sp,
                 fontWeight = FontWeight.SemiBold
@@ -144,45 +140,18 @@ fun DeveloperCreditCard(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Interactive Social Links Flow Row
+            // Interactive Social Links
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 verticalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                // Codeminer Website Link
+                // Telegram Channel Link
                 SocialChip(
-                    icon = Icons.Default.Language,
-                    label = "Codeminer Community",
-                    detail = "codeminer.firebaseapp.com",
-                    badgeColor = RatingGold,
-                    onClick = { uriHandler.openUri("https://codeminer.firebaseapp.com") }
-                )
-
-                // GitHub Link
-                SocialChip(
-                    icon = Icons.Default.Code,
-                    label = "GitHub",
-                    detail = "github.com/varun-0008",
-                    badgeColor = ElectricBlue,
-                    onClick = { uriHandler.openUri("https://github.com/varun-0008") }
-                )
-
-                // LinkedIn Link
-                SocialChip(
-                    icon = Icons.Default.Public,
-                    label = "LinkedIn",
-                    detail = "linkedin.com/in/kompelli-varun",
-                    badgeColor = Color(0xFF0A66C2),
-                    onClick = { uriHandler.openUri("https://www.linkedin.com/in/kompelli-varun") }
-                )
-
-                // Instagram Link
-                SocialChip(
-                    icon = Icons.Default.Person,
-                    label = "Instagram",
-                    detail = "instagram.com/kompellivarun8",
-                    badgeColor = AccentPink,
-                    onClick = { uriHandler.openUri("https://www.instagram.com/kompellivarun8/") }
+                    icon = Icons.Default.Send,
+                    label = "Diploma Nexus Telegram Channel",
+                    detail = "t.me/DiplomaNexus",
+                    badgeColor = VerifiedBlue,
+                    onClick = { uriHandler.openUri("https://t.me/DiplomaNexus") }
                 )
             }
         }
@@ -241,7 +210,7 @@ private fun SocialChip(
             }
 
             Text(
-                text = "Open ↗",
+                text = "Join ↗",
                 color = badgeColor,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold
@@ -260,7 +229,7 @@ fun DeveloperCreditBanner(
         modifier = modifier
             .fillMaxWidth()
             .clip(RoundedCornerShape(12.dp))
-            .clickable { uriHandler.openUri("https://codeminer.firebaseapp.com") },
+            .clickable { uriHandler.openUri("https://t.me/DiplomaNexus") },
         color = ElectricBlue.copy(alpha = 0.1f),
         border = androidx.compose.foundation.BorderStroke(1.dp, ElectricBlue.copy(alpha = 0.25f))
     ) {
@@ -280,19 +249,19 @@ fun DeveloperCreditBanner(
                 )
                 Spacer(modifier = Modifier.width(6.dp))
                 Text(
-                    text = "Diploma Community • Created by ",
+                    text = "Diploma Community • Built by ",
                     color = TextSecondary,
                     fontSize = 11.sp
                 )
                 Text(
-                    text = "Kompellivarun",
+                    text = "Diploma Nexus Team",
                     color = BrandOrange,
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Bold
                 )
             }
             Text(
-                text = "Codeminer ↗",
+                text = "Join Telegram ↗",
                 color = ElectricBlue,
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Bold

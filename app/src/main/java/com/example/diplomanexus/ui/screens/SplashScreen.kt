@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Code
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.School
 import androidx.compose.material.icons.filled.Security
+import androidx.compose.material.icons.filled.Send
 import androidx.compose.material.icons.filled.Verified
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -186,19 +187,19 @@ fun SplashScreen(
                         )
                         Spacer(modifier = Modifier.width(6.dp))
                         Text(
-                            text = "Created by ",
+                            text = "Built by ",
                             color = TextSecondary,
                             fontSize = 13.sp
                         )
                         Text(
-                            text = "Kompellivarun",
+                            text = "Diploma Nexus Team",
                             color = BrandOrange,
                             fontSize = 15.sp,
                             fontWeight = FontWeight.ExtraBold
                         )
                         Icon(
                             imageVector = Icons.Default.Verified,
-                            contentDescription = "Verified Creator",
+                            contentDescription = "Verified Team",
                             tint = VerifiedBlue,
                             modifier = Modifier
                                 .padding(start = 4.dp)
@@ -213,14 +214,14 @@ fun SplashScreen(
                         horizontalArrangement = Arrangement.Center
                     ) {
                         Icon(
-                            imageVector = Icons.Default.Code,
+                            imageVector = Icons.Default.Send,
                             contentDescription = null,
                             tint = RatingGold,
                             modifier = Modifier.size(14.dp)
                         )
                         Spacer(modifier = Modifier.width(4.dp))
                         Text(
-                            text = "Founder of Codeminer Community",
+                            text = "https://t.me/DiplomaNexus",
                             color = RatingGold,
                             fontSize = 12.sp,
                             fontWeight = FontWeight.Bold

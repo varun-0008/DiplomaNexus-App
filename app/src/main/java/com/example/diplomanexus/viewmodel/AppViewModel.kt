@@ -589,7 +589,7 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
     fun getMockPosts(): List<PostDto> {
         val user = _currentUser.value
         val myUsername = user?.username ?: "dev_user"
-        val myStudentName = user?.student_name ?: "Diploma Developer"
+        val myStudentName = user?.student_name ?: "Diploma Student"
         val myIsVerified = user?.is_verified ?: true
         val myProfilePic = user?.profile_pic_base64
 
