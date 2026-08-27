@@ -310,6 +310,8 @@ data class MarketplaceListingDto(
     val created_at: String,
     val username: String,
     val student_name: String?,
+    val college_name: String? = null,
+    val branch: String? = null,
     val is_verified: Boolean,
     val profile_pic_base64: String?
 )

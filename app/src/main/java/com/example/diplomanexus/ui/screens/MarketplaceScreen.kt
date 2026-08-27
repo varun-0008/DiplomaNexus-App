@@ -354,6 +354,17 @@ fun ListingCard(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
                 )
+                if (!listing.college_name.isNullOrBlank()) {
+                    Spacer(modifier = Modifier.height(2.dp))
+                    Text(
+                        text = "🏛️ ${listing.college_name}${if (!listing.branch.isNullOrBlank()) " (${listing.branch})" else ""}",
+                        color = VerifiedBlue,
+                        fontSize = 9.5.sp,
+                        fontWeight = FontWeight.SemiBold,
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
                 Spacer(modifier = Modifier.height(4.dp))
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
