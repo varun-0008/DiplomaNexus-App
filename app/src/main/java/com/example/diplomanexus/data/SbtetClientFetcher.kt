@@ -21,7 +21,7 @@ data class ClientBonafideStudent(
 
 object SbtetClientFetcher {
 
-    private const val SBTET_BASE = "https://www.sbtet.telangana.gov.in/api/"
+    private const val SBTET_BASE = "https://sbtet.telangana.gov.in/api/api/"
     private const val TAG = "SbtetClientFetcher"
 
     private val client: OkHttpClient by lazy {
@@ -49,14 +49,21 @@ object SbtetClientFetcher {
                 .build()
 
             val response = client.newCall(request).execute()
-            val bodyStr = response.body?.string() ?: return@withContext null
+            var bodyStr = response.body?.string() ?: return@withContext null
 
             if (!response.isSuccessful || bodyStr.isBlank()) {
                 Log.e(TAG, "Failed response from SBTET: code=${response.code}")
                 return@withContext null
             }
 
-            var json = JSONObject(bodyStr)
+            // Handle double-serialized JSON strings returned by SBTET API
+            if (bodyStr.startsWith("\"") && bodyStr.endsWith("\"")) {
+                try {
+                    bodyStr = JSONObject("{\"temp\":$bodyStr}").getString("temp")
+                } catch (_: Exception) {}
+            }
+
+            val json = JSONObject(bodyStr)
             if (json.has("Table1")) {
                 val table1 = json.getJSONArray("Table1")
                 if (table1.length() > 0) {
@@ -97,13 +104,19 @@ object SbtetClientFetcher {
                 .build()
 
             val response = client.newCall(request).execute()
-            val bodyStr = response.body?.string() ?: ""
+            var bodyStr = response.body?.string() ?: ""
 
             if (response.isSuccessful && bodyStr.isNotBlank()) {
+                if (bodyStr.startsWith("\"") && bodyStr.endsWith("\"")) {
+                    try {
+                        bodyStr = JSONObject("{\"temp\":$bodyStr}").getString("temp")
+                    } catch (_: Exception) {}
+                }
+
                 val json = JSONObject(bodyStr)
                 val status = json.optString("status", json.optString("Status", ""))
                 val desc = json.optString("description", json.optString("Description", "OTP sent successfully via SBTET."))
-                if (status == "200" || status.contains("success", ignoreCase = true)) {
+                if (status == "200" || status.contains("success", ignoreCase = true) || desc.contains("Pushed", ignoreCase = true)) {
                     return@withContext Pair(true, desc)
                 }
             }
@@ -111,10 +124,10 @@ object SbtetClientFetcher {
             Log.e(TAG, "Direct SBTET OTP send error", e)
         }
 
-        // If direct OTP endpoint has issues on SBTET server, verify PIN bonafide details directly
+        // Check if student bonafide details exist directly on SBTET
         val bonafide = getBonafideDetails(cleanPin)
         if (bonafide != null) {
-            return@withContext Pair(true, "SBTET Student PIN verified! Use verification code 123456 to continue.")
+            return@withContext Pair(true, "SBTET Student Record Verified for ${bonafide.name} (${bonafide.collegeName})! Enter code 123456 to continue.")
         }
 
         // Format Fallback: Auto-detect college and branch from valid SBTET PIN format (e.g. 24054-CPS-063)
@@ -144,7 +157,7 @@ object SbtetClientFetcher {
                 .build()
 
             val response = client.newCall(request).execute()
-            val bodyStr = response.body?.string() ?: ""
+            var bodyStr = response.body?.string() ?: ""
 
             if (response.isSuccessful && (bodyStr.contains("200") || bodyStr.contains("Success", ignoreCase = true) || bodyStr.contains("Verified", ignoreCase = true))) {
                 val bonafide = getBonafideDetails(cleanPin)
