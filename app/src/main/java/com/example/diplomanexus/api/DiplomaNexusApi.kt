@@ -204,6 +204,7 @@ interface DiplomaNexusApi {
                     var exception: Exception? = null
                     for (attempt in 1..3) {
                         try {
+                            response?.close() // Close previous response before retrying to prevent IllegalStateException
                             response = chain.proceed(request)
                             if (response.isSuccessful || attempt == 3) {
                                 return@addInterceptor response
