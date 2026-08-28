@@ -563,34 +563,21 @@ class AppViewModel(application: Application) : AndroidViewModel(application) {
                 val response = api.getPosts(getBearerToken())
                 if (response.isSuccessful && response.body() != null) {
                     val dtoList = response.body()!!
-                    _posts.value = combineWithMocks(dtoList)
+                    _posts.value = dtoList
                     // Save to local database for offline caching
                     postDao.insertPosts(dtoList.map { it.toEntity() })
                 } else {
-                    _posts.value = combineWithMocks(emptyList())
+                    _posts.value = emptyList()
                 }
             } catch (e: Exception) {
                 Log.e("AppViewModel", "Fetch posts error", e)
-                _posts.value = combineWithMocks(emptyList())
+                _posts.value = emptyList()
             }
         }
     }
 
     private fun combineWithMocks(fetchedList: List<PostDto>): List<PostDto> {
-        val mocks = getMockPosts()
-        val combined = mutableListOf<PostDto>()
-        
-        // Add mocks first so they are at the top/newest
-        combined.addAll(mocks)
-        
-        // Add fetched posts, avoiding duplicates
-        fetchedList.forEach { post ->
-            if (combined.none { it.id == post.id }) {
-                combined.add(post)
-            }
-        }
-        
-        return combined
+        return fetchedList
     }
 
     fun getMockPosts(): List<PostDto> {
