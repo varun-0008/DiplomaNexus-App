@@ -78,6 +78,12 @@ interface DiplomaNexusApi {
         @Header("Authorization") token: String
     ): Response<AcademicInfoDto>
 
+    @POST("api/academic-info/sync")
+    suspend fun syncAcademicInfo(
+        @Header("Authorization") token: String,
+        @Body info: AcademicInfoDto
+    ): Response<SimpleResponse>
+
     @GET("api/posts")
     suspend fun getPosts(
         @Header("Authorization") token: String
